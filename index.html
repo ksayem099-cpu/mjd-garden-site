@@ -146,6 +146,7 @@ Local garden services
 <div><div style="font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: #0F3D2A">4+</div><div style="margin-top: 4px; font-size: 15px; color: #4A5E53; font-weight: 500">reviews mention competitive pricing</div></div>
 </div>
 </section>
+
 <!-- SERVICES -->
 <section id="services" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
 <div style="max-width: 640px">
@@ -325,6 +326,75 @@ Local garden services
 </div>
 </div>
 </section>
+
+<!-- REVIEW WALL -->
+<style>
+.rw-wrap{position:relative;margin-top:44px;padding:28px 0;border:1px solid #DCEBE1;border-radius:28px;overflow:hidden;background-color:#FCFDFC;background-image:linear-gradient(rgba(15,61,42,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,61,42,.05) 1px,transparent 1px);background-size:36px 36px}
+.rw{display:flex;flex-direction:column;gap:20px;overflow:hidden}
+.rw:not(.rw-static){-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.rw-row{display:flex;width:max-content;animation:rw-left 60s linear infinite}
+.rw-row.rev{animation-name:rw-right;margin-left:-170px}
+.rw:hover .rw-row{animation-play-state:paused}
+@keyframes rw-left{to{transform:translateX(-50%)}}
+@keyframes rw-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.rw-card{flex:0 0 340px;height:276px;box-sizing:border-box;margin-right:20px;background:#fff;border:1px solid #DCEBE1;border-radius:20px;padding:22px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(15,61,42,.05)}
+.rw-stars{color:#E8A317;font-size:16px;letter-spacing:3px}
+.rw-txt{margin:14px 0 18px;font-size:15px;line-height:1.65;color:#3C5246;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.rw-foot{margin-top:auto;padding-top:16px;border-top:1px solid #E6F0E9;display:flex;align-items:center;gap:12px}
+.rw-av{flex:0 0 38px;width:38px;height:38px;border-radius:50%;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.rw-name{font-size:14px;font-weight:800;color:#10231A}
+.rw-badge{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#1F9A5F}
+.rw-static{flex-direction:row;overflow-x:auto;padding:0 20px}
+.rw-static .rw-card{flex:0 0 min(340px,86%)}
+@media (max-width:600px){.rw-card{flex-basis:280px;height:268px;padding:18px}.rw-row.rev{margin-left:-120px}.rw-wrap{border-radius:22px}}
+</style>
+
+<section id="stories" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
+<div style="max-width: 640px">
+<div style="font-size: 14px; font-weight: 800; color: #1F7A4D; letter-spacing: 0.08em; text-transform: uppercase">Customer stories</div>
+<h2 style="margin: 12px 0 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800; color: #0F3D2A">What customers say.</h2>
+</div>
+
+<div class="rw-wrap">
+<div class="rw" id="rw">
+
+<!-- ===== একটা রিভিউ কার্ড: নতুন রিভিউয়ের জন্য এই পুরো <article> কপি করে নিচে পেস্ট করো ===== -->
+<article class="rw-card">
+<div class="rw-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+<p class="rw-txt">We contacted MJD Gardner Services to see if they could help us clear and disassemble our large, falling-down shed and also the large amount of ivy growing through. Matt came out the same day and gave us a good quote. We decided to go ahead …</p>
+<div class="rw-foot">
+<div class="rw-av" style="background:#1F7A4D" aria-hidden="true">T</div>
+<div><div class="rw-name">Tom Hancock</div>
+<div class="rw-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l3 3 5-6"/></svg>Google review</div></div>
+</div>
+</article>
+<!-- ===== কার্ড শেষ ===== -->
+
+</div>
+</div>
+</section>
+
+<script>
+(function(){
+var wall=document.getElementById('rw');if(!wall)return;
+var cards=[].slice.call(wall.querySelectorAll('.rw-card'));
+if(!cards.length||matchMedia('(prefers-reduced-motion:reduce)').matches){wall.classList.add('rw-static');return}
+function cl(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');return k}
+var a=[],b=[];
+if(cards.length<6){a=cards.slice();var h=Math.floor(cards.length/2);b=cards.slice(h).concat(cards.slice(0,h)).map(cl)}
+else cards.forEach(function(c,i){(i%2?b:a).push(c)});
+wall.innerHTML='';
+[a,b].forEach(function(list,r){
+var row=document.createElement('div');row.className='rw-row'+(r?' rev':'');wall.appendChild(row);
+list.forEach(function(c){row.appendChild(c)});
+var need=wall.clientWidth+500;
+while(row.scrollWidth<need){list.forEach(function(c){row.appendChild(cl(c))})}
+[].slice.call(row.children).forEach(function(c){row.appendChild(cl(c))});
+row.style.animationDuration=Math.round(row.scrollWidth/2/45)+'s';
+});
+})();
+</script>
+
 <!-- PROCESS -->
 <section style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
 <div style="max-width: 640px">
