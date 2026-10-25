@@ -146,61 +146,6 @@ Local garden services
 <div><div style="font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: #0F3D2A">4+</div><div style="margin-top: 4px; font-size: 15px; color: #4A5E53; font-weight: 500">reviews mention competitive pricing</div></div>
 </div>
 </section>
-<!-- TEXT CAROUSEL -->
-<style>
-.cr-track{display:grid}
-.cr-slide{grid-area:1/1;margin:0;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility .6s;text-align:center}
-.cr-slide.is-active{opacity:1;visibility:visible}
-.cr-slide blockquote{margin:0 auto;max-width:760px;font-size:28px;line-height:1.35;letter-spacing:-0.02em;font-weight:800;color:#0F3D2A}
-.cr-slide figcaption{margin-top:16px;font-size:15px;font-weight:600;color:#4A5E53}
-.cr-ctrl{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:14px}
-.cr-btn{width:44px;height:44px;border-radius:50%;border:1px solid #DCEBE1;background:#fff;color:#0F3D2A;font-size:18px;cursor:pointer}
-.cr-dots{display:flex;gap:8px}
-.cr-dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:#CFE5D7;cursor:pointer}
-.cr-dot.is-active{background:#1F7A4D;width:26px;border-radius:999px}
-@media (max-width:600px){.cr-slide blockquote{font-size:21px}}
-@media (prefers-reduced-motion:reduce){.cr-slide{transition:none}}
-</style>
-
-<section style="max-width:1200px;margin:72px auto 0;padding:0 24px;box-sizing:border-box">
-<div id="cr" style="background:#F3F8F4;border:1px solid #DCEBE1;border-radius:28px;padding:48px 24px">
-<div class="cr-track">
-<figure class="cr-slide is-active">
-<blockquote>“এখানে প্রথম লেখা বসাও।”</blockquote>
-<figcaption>— Google review</figcaption>
-</figure>
-<figure class="cr-slide">
-<blockquote>“এখানে দ্বিতীয় লেখা বসাও।”</blockquote>
-<figcaption>— Google review</figcaption>
-</figure>
-<figure class="cr-slide">
-<blockquote>“এখানে তৃতীয় লেখা বসাও।”</blockquote>
-<figcaption>— Google review</figcaption>
-</figure>
-</div>
-<div class="cr-ctrl">
-<button class="cr-btn" id="cr-prev" type="button" aria-label="Previous">‹</button>
-<div class="cr-dots" id="cr-dots"></div>
-<button class="cr-btn" id="cr-next" type="button" aria-label="Next">›</button>
-</div>
-</div>
-</section>
-
-<script>
-(function(){
-var slides=document.querySelectorAll('#cr .cr-slide'),dotsBox=document.getElementById('cr-dots'),i=0,timer;
-if(!slides.length)return;
-slides.forEach(function(_,n){var d=document.createElement('button');d.type='button';d.className='cr-dot';d.setAttribute('aria-label','Slide '+(n+1));d.onclick=function(){go(n);restart()};dotsBox.appendChild(d)});
-var dots=dotsBox.children;
-function go(n){i=(n+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('is-active',k===i);dots[k].classList.toggle('is-active',k===i)})}
-function restart(){clearInterval(timer);if(!matchMedia('(prefers-reduced-motion:reduce)').matches)timer=setInterval(function(){go(i+1)},5000)}
-document.getElementById('cr-prev').onclick=function(){go(i-1);restart()};
-document.getElementById('cr-next').onclick=function(){go(i+1);restart()};
-var box=document.getElementById('cr');
-box.onmouseenter=function(){clearInterval(timer)};box.onmouseleave=restart;
-go(0);restart();
-})();
-</script>
 <!-- SERVICES -->
 <section id="services" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
 <div style="max-width: 640px">
@@ -378,56 +323,6 @@ go(0);restart();
 </div>
 
 </div>
-</div>
-</section>
-<!-- GOOGLE REVIEW CARDS -->
-<style>
-.gr-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin-top:36px;-webkit-overflow-scrolling:touch}
-.gr-card{flex:0 0 min(400px,86%);scroll-snap-align:start;box-sizing:border-box;background:#fff;border:1px solid #DCEBE1;border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(15,61,42,.06);display:flex;flex-direction:column;gap:14px}
-.gr-head{display:flex;align-items:center;gap:12px}
-.gr-av{flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#E3F2E8;color:#0F3D2A;font-weight:800;display:flex;align-items:center;justify-content:center}
-.gr-name{font-weight:800;color:#0F3D2A;font-size:16px}
-.gr-meta{font-size:13px;color:#4A5E53}
-.gr-rate{display:flex;align-items:center;gap:10px;font-size:13px;color:#4A5E53}
-.gr-stars{color:#E8A317;font-size:17px;letter-spacing:2px}
-.gr-txt{margin:0;font-size:15px;line-height:1.65;color:#3C5246}
-.gr-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px;margin-top:auto}
-.gr-photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;display:block}
-.gr-more{font-size:14px;font-weight:700;color:#1F7A4D}
-</style>
-
-<section style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
-<div style="max-width: 640px">
-<div style="font-size: 14px; font-weight: 800; color: #1F7A4D; letter-spacing: 0.08em; text-transform: uppercase">Customer stories</div>
-<h2 style="margin: 12px 0 0; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em; font-weight: 800; color: #0F3D2A">What customers say.</h2>
-</div>
-
-<div class="gr-row">
-
-<!-- ===== একটা রিভিউ কার্ড (নতুন রিভিউয়ের জন্য এই পুরো <article> কপি করো) ===== -->
-<article class="gr-card">
-<div class="gr-head">
-<div class="gr-av" aria-hidden="true">T</div>
-<div>
-<div class="gr-name">Tom Hancock</div>
-<div class="gr-meta">Local Guide · 70 reviews</div>
-</div>
-</div>
-<div class="gr-rate">
-<span class="gr-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
-<span>a year ago</span>
-</div>
-<p class="gr-txt">We contacted MJD Gardner Services to see if they could help us clear and disassemble our large, falling-down shed and also the large amount of ivy growing through. Matt came out the same day and gave us a good quote. We decided to go ahead …</p>
-<a class="gr-more" href="https://www.google.com/maps/search/?api=1&amp;query=MJD+Local+Garden+Services+Birmingham" target="_blank" rel="noopener">Read the full review on Google</a>
-<div class="gr-photos">
-<img loading="lazy" src="images/review-tom-1.jpg" alt="Shed being dismantled" onerror="this.remove()">
-<img loading="lazy" src="images/review-tom-2.jpg" alt="Garden overgrown with ivy" onerror="this.remove()">
-<img loading="lazy" src="images/review-tom-3.jpg" alt="Shed frame before clearing" onerror="this.remove()">
-<img loading="lazy" src="images/review-tom-4.jpg" alt="Shed debris in the garden" onerror="this.remove()">
-</div>
-</article>
-<!-- ===== কার্ড শেষ ===== -->
-
 </div>
 </section>
 <!-- PROCESS -->
