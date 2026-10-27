@@ -146,7 +146,72 @@ Local garden services
 <div><div style="font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: #0F3D2A">4+</div><div style="margin-top: 4px; font-size: 15px; color: #4A5E53; font-weight: 500">reviews mention competitive pricing</div></div>
 </div>
 </section>
-
+<!-- GRASS SCENE -->
+<style>
+.gs{position:relative;width:100%;height:150px;margin:44px auto -48px;overflow:hidden}
+.gs svg{display:block}
+.gs-low,.gs-tall{position:absolute;inset:0}
+.gs-tall{animation:gs-clip 20s linear infinite}
+.gs-mw{position:absolute;bottom:4px;left:0;width:176px;transform:translateX(-88%);z-index:2;animation:gs-move 20s linear infinite}
+.gs-bob{animation:gs-bob .35s ease-in-out infinite alternate}
+.gs-wh{animation:gs-spin .7s linear infinite}
+.gs-leg{animation:gs-walk .7s ease-in-out infinite alternate;transform-origin:44px 80px}
+.gs-leg.b{animation-direction:alternate-reverse}
+.gs-cl{animation:gs-fly .9s ease-out infinite;opacity:0}
+.gs-sw{animation:gs-sway 3.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+.gs-sw.s2{animation-duration:2.6s;animation-delay:-1s}.gs-sw.s3{animation-duration:3.8s;animation-delay:-2s}
+.gs.off *{animation-play-state:paused!important}
+@keyframes gs-move{0%{left:0}80%{left:100%}92%,100%{left:calc(100% + 200px)}}
+@keyframes gs-clip{0%{clip-path:inset(0 0 0 0);opacity:1}80%{clip-path:inset(0 0 0 100%);opacity:1}92%{clip-path:inset(0 0 0 100%);opacity:0}92.1%{clip-path:inset(0 0 0 0);opacity:0}100%{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes gs-bob{to{transform:translateY(-2px)}}
+@keyframes gs-spin{to{transform:rotate(360deg)}}
+@keyframes gs-walk{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}
+@keyframes gs-fly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(20px,-36px) scale(.3);opacity:0}}
+@keyframes gs-sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+@media (max-width:600px){.gs{height:128px;margin:28px auto -32px}.gs-mw{width:144px}}
+@media (prefers-reduced-motion:reduce){.gs *{animation:none!important}.gs-tall{clip-path:inset(0 0 0 55%)}.gs-mw{left:55%}}
+</style>
+<section class="gs" id="gs" role="img" aria-label="A gardener mowing overgrown grass">
+<svg class="gs-low" id="gs-low" aria-hidden="true"></svg>
+<div class="gs-tall"><svg id="gs-tall" aria-hidden="true"></svg></div>
+<svg class="gs-mw" viewBox="0 0 190 130" aria-hidden="true" style="overflow:visible">
+<ellipse cx="95" cy="125" rx="82" ry="4" fill="rgba(0,0,0,.18)"/>
+<g class="gs-bob">
+<g class="gs-leg b"><rect x="40" y="78" width="9" height="40" rx="4" fill="#2B3A33"/><rect x="39" y="114" width="15" height="8" rx="3" fill="#1A1A1A"/></g>
+<g class="gs-leg"><rect x="40" y="78" width="9" height="40" rx="4" fill="#3A4A42"/><rect x="39" y="114" width="15" height="8" rx="3" fill="#222"/></g>
+<g transform="rotate(7 44 80)"><rect x="32" y="40" width="26" height="42" rx="9" fill="#F28C28"/><rect x="32" y="62" width="26" height="4" fill="#FFD7A8"/>
+<circle cx="46" cy="30" r="10" fill="#E8B48C"/><path d="M35 28a11 11 0 0 1 22 0z" fill="#0F3D2A"/><rect x="46" y="26" width="16" height="4" rx="2" fill="#0F3D2A"/>
+<path d="M50 48L84 68" stroke="#0F3D2A" stroke-width="8" stroke-linecap="round"/><circle cx="86" cy="68" r="5" fill="#E8B48C"/></g>
+<path d="M102 98L86 67h-6" stroke="#444" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M97 88q-20 3-18 24h24z" fill="#3FA56A"/>
+<rect x="96" y="86" width="70" height="26" rx="8" fill="#F28C28"/><rect x="104" y="79" width="40" height="11" rx="4" fill="#D9711A"/><rect x="152" y="104" width="22" height="8" rx="4" fill="#555"/>
+<g class="gs-wh" style="transform-origin:112px 114px"><circle cx="112" cy="114" r="11" fill="#2B2B2B"/><circle cx="112" cy="114" r="4" fill="#9AA"/><path d="M112 105v18M103 114h18" stroke="#9AA" stroke-width="2"/></g>
+<g class="gs-wh" style="transform-origin:156px 114px"><circle cx="156" cy="114" r="11" fill="#2B2B2B"/><circle cx="156" cy="114" r="4" fill="#9AA"/><path d="M156 105v18M147 114h18" stroke="#9AA" stroke-width="2"/></g>
+</g>
+<circle class="gs-cl" cx="170" cy="104" r="3" fill="#7DBE4A"/><circle class="gs-cl" cx="174" cy="108" r="2.5" fill="#58C07F" style="animation-delay:.3s"/><circle class="gs-cl" cx="168" cy="106" r="2" fill="#9ED35F" style="animation-delay:.6s"/>
+</svg>
+</section>
+<script>
+(function(){
+var el=document.getElementById('gs');if(!el)return;
+var low=document.getElementById('gs-low'),tall=document.getElementById('gs-tall');
+function r(a,b){return a+Math.random()*(b-a)}
+function blade(x,y,h,l,w){return 'M'+(x-w)+','+y+'C'+(x-w*.6)+','+(y-h*.5)+' '+(x+l*.5)+','+(y-h*.8)+' '+(x+l)+','+(y-h)+'C'+(x+l*.6)+','+(y-h*.6)+' '+(x+w*.6)+','+(y-h*.35)+' '+(x+w)+','+y+'Z'}
+function build(){
+var W=el.clientWidth,H=el.clientHeight,top=H*.85,i,out;
+[low,tall].forEach(function(s){s.setAttribute('width',W);s.setAttribute('height',H);s.setAttribute('viewBox','0 0 '+W+' '+H)});
+out='<rect x="0" y="'+top+'" width="'+W+'" height="'+(H-top)+'" fill="#2F9E5E"/><rect x="0" y="'+top+'" width="'+W+'" height="'+(H-top)+'" fill="url(#gs-st)"/><defs><pattern id="gs-st" width="56" height="10" patternUnits="userSpaceOnUse"><rect width="28" height="10" fill="rgba(255,255,255,.12)"/></pattern></defs>';
+var lc=['#43B06F','#58C07F','#3AA663','#4DBB78'];
+for(i=0;i<W/3;i++){out+='<path d="'+blade(r(0,W),r(top,H-2),r(5,13),r(-3,3),1.6)+'" fill="'+lc[i%4]+'"/>'}
+low.innerHTML=out;
+var tc=['#1F7A4D','#2E8B57','#3FA56A','#5FB35A','#7DBE4A','#176B42','#8DAA3C'],g=['','',''];
+for(i=0;i<W/4.2;i++){g[i%3]+='<path d="'+blade(r(0,W),r(top,H-3),H*r(.3,.72),r(-14,14),r(2,3.4))+'" fill="'+tc[Math.floor(r(0,tc.length))]+'"/>'}
+tall.innerHTML='<g class="gs-sw">'+g[0]+'</g><g class="gs-sw s2">'+g[1]+'</g><g class="gs-sw s3">'+g[2]+'</g>';
+}
+build();var t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(build,200)});
+if('IntersectionObserver' in window)new IntersectionObserver(function(e){el.classList.toggle('off',!e[0].isIntersecting)}).observe(el);
+})();
+</script>
 <!-- SERVICES -->
 <section id="services" style="max-width: 1200px; margin: 0 auto; padding: 112px 24px 0; box-sizing: border-box">
 <div style="max-width: 640px">
